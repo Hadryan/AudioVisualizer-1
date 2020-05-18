@@ -1,5 +1,7 @@
 package Visuals.particles;
 
+import processing.core.PApplet;
+
 import Controller.AudioController;
 
 import java.util.ArrayList;

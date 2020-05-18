@@ -8,7 +8,7 @@ import ddf.minim.AudioPlayer;
 import ddf.minim.AudioBuffer;
 import ddf.minim.analysis.FFT;
 
-public class AudioController extends PApplet {
+public class AudioController {
   private int frameSize = 512;
   private int sampleRate = 44100;
 
@@ -25,7 +25,7 @@ public class AudioController extends PApplet {
   private float smothedAmplitude = 0;
 
   private float log2(float f) {
-    return log(f) / log(2f);
+    return PApplet.log(f) / PApplet.log(2f);
   }
 
   public void startMinim() {
@@ -46,20 +46,10 @@ public class AudioController extends PApplet {
     }
   }
 
-  public void calculateAverageAmplitude() {
-    float total = 0;
-    for (int i = 0; i < audioBuffer.size(); i++) {
-      total += abs(audioBuffer.get(i));
-    }
-    amplitude = total / audioBuffer.size();
-    smothedAmplitude = PApplet.lerp(smothedAmplitude, amplitude, 0.1f);
-  }
-
-
   protected void calculateFrequencyBands() {
     for (int i = 0; i < bands.length; i++) {
-      int start = (int) pow(2, i) - 1;
-      int w = (int) pow(2, i);
+      int start = (int) PApplet.pow(2, i) - 1;
+      int w = (int) PApplet.pow(2, i);
       int end = start + w;
 
       float average = 0;
@@ -70,22 +60,13 @@ public class AudioController extends PApplet {
 
       average /= (float) w;
       bands[i] = average * 5.0f;
-      smoothedBands[i] = lerp(smoothedBands[i], bands[i], 0.05f);
+      smoothedBands[i] = PApplet.lerp(smoothedBands[i], bands[i], 0.05f);
     }
   }
 
   public void loadAudio(String fileName) {
     audioPlayer = minim.loadFile(fileName, frameSize);
     audioBuffer = audioPlayer.left;
-  }
-
-  public void playAudio() {
-    audioPlayer.cue(0);
-    audioPlayer.play();
-  }
-
-  public void setFrameSize(int frameSize) {
-    this.frameSize = frameSize;
   }
 
   public float[] getBands() {
@@ -99,6 +80,7 @@ public class AudioController extends PApplet {
   public AudioInput getAudioInput() {
     return audioInput;
   }
+
 
   public AudioBuffer getAudioBuffer() {
     return audioBuffer;
