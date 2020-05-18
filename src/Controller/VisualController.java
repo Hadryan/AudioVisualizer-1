@@ -10,7 +10,7 @@ public class VisualController extends AudioController {
   private ParticlesSystem particlesSystem;
 
   public void settings() {
-    size(1024, 700);
+    size(1024, 576);
   }
 
   public void setup() {

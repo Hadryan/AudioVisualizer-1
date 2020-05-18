@@ -2,7 +2,6 @@ package Main;
 
 import Controller.VisualController;
 
-
 public class Main {
   public void visualController() {
     String[] args = {"MAIN"};

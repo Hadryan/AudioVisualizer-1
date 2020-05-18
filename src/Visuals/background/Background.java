@@ -1,9 +1,6 @@
 package Visuals.background;
 
-import processing.core.PApplet;
-
 import Controller.VisualController;
-import Controller.AudioException;
 
 public class Background {
   VisualController vc;
@@ -18,7 +15,7 @@ public class Background {
 
     int size = 50;
     int offset = 50;
-    int lineHeight = 70;
+    int lineHeight = 7;
 
     vc.fill(255);
 
@@ -62,7 +59,6 @@ public class Background {
     }
     vc.popMatrix();
 
-    PApplet.println(vc.getAmplitude() * 50);
     if (vc.getAmplitude() * 50 > 20) {
       colorOffset += vc.getAmplitude() * 50;
     }

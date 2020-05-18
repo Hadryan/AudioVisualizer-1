@@ -1,7 +1,5 @@
 package Visuals.particles;
 
-import processing.core.PApplet;
-
 import java.util.ArrayList;
 
 import Controller.VisualController;
