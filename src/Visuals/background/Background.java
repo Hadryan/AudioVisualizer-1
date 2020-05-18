@@ -1,9 +1,13 @@
 package Visuals.background;
 
+import processing.core.PApplet;
+
 import Controller.VisualController;
+import Controller.AudioException;
 
 public class Background {
   VisualController vc;
+  private float colorOffset = 0;
 
   public Background(VisualController vc) {
     this.vc = vc;
@@ -46,16 +50,21 @@ public class Background {
     vc.vertex(vc.getHalfWidth() - size, vc.getHalfHeight() + size);
     vc.endShape();
 
-    vc.fill(255);
     vc.pushMatrix();
     vc.translate(vc.getHalfWidth(), vc.getHalfHeight());
 
     for (int i = 0; i < 25; i++) {
+      vc.stroke(((255 / 25 * i) + colorOffset) % 255, 255, 255);
       vc.line(-(size + offset * i), size + (offset / 2 * i), 0, -(size + (offset * i)));
       vc.line(0, -(size + (offset * i)), size + (offset * i), size + (offset / 2 * i));
       vc.line(size + (offset * i), size + (offset / 2 * i), -(size + offset * i),
           size + (offset / 2 * i));
     }
     vc.popMatrix();
+
+    PApplet.println(vc.getAmplitude() * 50);
+    if (vc.getAmplitude() * 50 > 20) {
+      colorOffset += vc.getAmplitude() * 50;
+    }
   }
 }

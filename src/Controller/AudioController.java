@@ -23,6 +23,7 @@ public class AudioController extends PApplet {
 
   private float amplitude = 0;
   private float smothedAmplitude = 0;
+  private float frequencyBand = 0;
 
   private float log2(float f) {
     return log(f) / log(2f);
@@ -56,8 +57,9 @@ public class AudioController extends PApplet {
   }
 
 
-  protected void calculateFrequencyBands() {
+  public void calculateFrequencyBands() {
     for (int i = 0; i < bands.length; i++) {
+      println("freq");
       int start = (int) pow(2, i) - 1;
       int w = (int) pow(2, i);
       int end = start + w;
@@ -70,6 +72,7 @@ public class AudioController extends PApplet {
 
       average /= (float) w;
       bands[i] = average * 5.0f;
+      frequencyBand = average * 5;
       smoothedBands[i] = lerp(smoothedBands[i], bands[i], 0.05f);
     }
   }
@@ -94,6 +97,10 @@ public class AudioController extends PApplet {
 
   public float[] getSmoothedBands() {
     return smoothedBands;
+  }
+
+  public float getFrequencyBand() {
+    return frequencyBand;
   }
 
   public AudioInput getAudioInput() {
