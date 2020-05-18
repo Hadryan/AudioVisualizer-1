@@ -14,6 +14,9 @@ public class VisualController extends AudioController {
     startMinim();
     loadAudio("All My Friends.mp3");
     background = new Background(this);
+
+    halfWidth = width / 2;
+    halfHeight = height / 2;
   }
 
   public void keyPressed() {
