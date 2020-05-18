@@ -10,7 +10,6 @@ public class Background {
   }
 
   public void display() {
-    vc.background(0);
     vc.stroke(0);
 
     int size = 50;

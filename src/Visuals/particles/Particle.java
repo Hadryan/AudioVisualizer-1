@@ -37,7 +37,6 @@ public class Particle {
   }
 
   public float getAcceleration() {
-    PApplet.println("Accel is " + acceleration.y);
     return acceleration.y;
   }
 
@@ -57,11 +56,11 @@ public class Particle {
   }
 
   public boolean isDead() {
-    return life <= 0;
+    return life >= 500;
   }
 
   public void update() {
-    life--;
+    life++;
     if (processing.frameCount % 60 == 0) {
       amplitude = PApplet.lerp(amplitude, processing.random(0, 1), .4f);
     }
@@ -80,6 +79,7 @@ public class Particle {
   }
 
   public void display() {
+    processing.colorMode(PApplet.HSB);
     processing.noStroke();
     processing.fill(255, 0, PApplet.map(life, 50, 500, 0, 255));
     processing.ellipse(coordinates.x, coordinates.y, circleWidth, circleWidth);

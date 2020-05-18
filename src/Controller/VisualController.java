@@ -1,10 +1,13 @@
 package Controller;
 
 import Visuals.background.Background;
+import Visuals.particles.ParticlesSystem;
 
 public class VisualController extends AudioController {
   private float halfWidth, halfHeight;
+
   private Background background;
+  private ParticlesSystem particlesSystem;
 
   public void settings() {
     size(1024, 700);
@@ -14,9 +17,12 @@ public class VisualController extends AudioController {
     startMinim();
     loadAudio("All My Friends.mp3");
     background = new Background(this);
+    particlesSystem = new ParticlesSystem(this);
 
     halfWidth = width / 2;
     halfHeight = height / 2;
+
+    playAudio();
   }
 
   public void keyPressed() {
@@ -35,6 +41,8 @@ public class VisualController extends AudioController {
   }
 
   public void draw() {
+    background(0);
     background.display();
+    particlesSystem.display();
   }
 }
